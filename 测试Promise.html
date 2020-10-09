@@ -99,6 +99,16 @@
                     console.log("race onRejected", reason);
                 }
             );
+
+            const p6 = Promise.resolveDelay(66, 2000);
+            const p7 = Promise.rejectDelay(77, 3000);
+
+            p6.then((value) => {
+                console.log("p6", value);
+            });
+            p7.catch((reason) => {
+                console.log("p7", reason);
+            });
         </script>
     </body>
 </html>

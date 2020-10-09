@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            async function fn1() {
+                // return 1;
+                // throw 2;
+                return Promise.reject(3);
+            }
+            const result = fn1();
+            result.then(
+                (value) => {
+                    console.log("onResolved", value);
+                },
+                (reason) => {
+                    console.log("onRejected", reason);
+                }
+            );
+
+            function fn2() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        // resolve(5);
+                        reject(77);
+                    }, 1000);
+                });
+            }
+            function fn4() {
+                return 6;
+            }
+            async function fn3() {
+                try {
+                    // const value1 = await fn2();
+                    const value2 = await fn4();
+                    console.log(value2);
+                    const value1 = await fn2();
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            fn3();
+        </script>
+    </body>
+</html>
